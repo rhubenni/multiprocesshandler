@@ -4,6 +4,7 @@ from threading import Timer
 import time
 import copy
 
+
 class ProcessHandler:
 
     def __init__(self, timeout=None, interval=0.5, limit=None):
@@ -65,15 +66,26 @@ class ProcessHandler:
                 break
             i = i + 1
 
-
     def _process_release(self):
         procs = copy.copy(self._procs)
         for p in procs:
             if not self._procs[p]['proc'].is_alive():
-                del(self._procs[p]) #self._procs.remove(p['proc'])
+                del (self._procs[p])  # self._procs.remove(p['proc'])
             else:
                 if self._kill or not (self._timeout is None or int(time.time() - p['started']) > self._timeout):
                     self._procs[p]['proc'].terminate()
                     self._procs[p]['proc'].join()
-                    del(self._procs[p])
+                    del (self._procs[p])
+
+    def check_workers(self):
+        ret = False
+        for p in procs:
+            if self._procs[p]['proc'].is_alive():
+                ret = True
+                break;
+
+        if (self._signal == False and len(self._queue) > 0) and not self._kill:
+            ret = True
+
+        return ret
 
