@@ -77,9 +77,10 @@ class ProcessHandler:
                     self._procs[p]['proc'].join()
                     del (self._procs[p])
 
+
     def check_workers(self):
         ret = False
-        for p in procs:
+        for p in self._procs:
             if self._procs[p]['proc'].is_alive():
                 ret = True
                 break;
