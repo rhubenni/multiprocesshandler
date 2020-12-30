@@ -3,14 +3,14 @@ from distutils.core import setup
 setup(
     name='multiprocesshandler',
     packages=['multiprocesshandler'],
-    version='0.1-beta3',
+    version='0.1-beta4',
     # Chose a license from here: https://help.github.com/articles/licensing-a-repository
     license='GNU General Public License v3 (GPLv3)',
     description='A simple handler for multiprocessing in python with custom queue',
     author='Rhubenni Telesco',
     author_email='rhubenni.telesco+pydev@gmail.com',
     url='https://github.com/rhubenni/multiprocesshandler',
-    download_url='https://github.com/rhubenni/multiprocesshandler/archive/0.1-beta3.tar.gz',
+    download_url='https://github.com/rhubenni/multiprocesshandler/archive/0.1-beta4.tar.gz',
     keywords=['MULTIPROCESSING', 'TASK QUEUING', 'PARALELISM'],
     install_requires=[
         ''
