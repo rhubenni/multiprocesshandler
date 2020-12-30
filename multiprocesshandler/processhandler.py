@@ -14,7 +14,7 @@ class ProcessHandler:
         self._signal = True
         self._kill = False
         if limit is None or limit > multiprocessing.cpu_count():
-            self._limit = multiprocessing.cpu_count()-1
+            self._limit = multiprocessing.cpu_count() - 1
         else:
             self._limit = limit
         self._cycleFlag = True
@@ -29,16 +29,16 @@ class ProcessHandler:
                 self._cycle = Timer(self._interval, self._cycles)
                 self._cycle.start()
 
-    def stop(self, _kill = False):
+    def stop(self, _kill=False):
         self._signal = False
         self._kill = _kill
 
     def queue(self, fn, **kwargs):
         if not self._signal:
             raise Exception('Trying to enqueue task after stop() is called')
-        if len(self._procs) >= self._limit:
+        if self._limit > 0 and len(self._procs) >= self._limit:
             self._queue.append({
-                'fn':   fn,
+                'fn': fn,
                 'kwargs': kwargs.get('kwargs')
             })
         else:
@@ -58,12 +58,12 @@ class ProcessHandler:
     def _forward_queue(self):
         i = 0
         for q in self._queue:
-            if len(self._procs) < self._limit:
+            if self._limit > 0 and len(self._procs) < self._limit:
                 self._spawn(fn=q['fn'], kwargs=q)
                 self._queue.pop(i)
             else:
                 break
-            i = i +1
+            i = i + 1
 
     def _process_release(self):
         i = 0
@@ -75,4 +75,4 @@ class ProcessHandler:
                 if self._kill or not (self._timeout is None or int(time.time() - p['started']) > self._timeout):
                     p['proc'].terminate()
                     self._procs.pop(i)
-            i = i +1
+            i = i + 1
