@@ -83,7 +83,7 @@ class ProcessHandler:
         for p in self._procs:
             if self._procs[p]['proc'].is_alive():
                 ret = True
-                break;
+                break
 
         if (self._signal == False and len(self._queue) > 0) and not self._kill:
             ret = True
