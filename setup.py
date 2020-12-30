@@ -10,7 +10,7 @@ setup(
     author='Rhubenni Telesco',
     author_email='rhubenni.telesco+pydev@gmail.com',
     url='https://github.com/rhubenni/multiprocesshandler',
-    download_url='https://github.com/rhubenni/multiprocesshandler/archive/00.1-beta3.tar.gz',
+    download_url='https://github.com/rhubenni/multiprocesshandler/archive/0.1-beta3.tar.gz',
     keywords=['MULTIPROCESSING', 'TASK QUEUING', 'PARALELISM'],
     install_requires=[
         ''
